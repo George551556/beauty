@@ -34,12 +34,23 @@
 		new ToBeauty(obj);
 	};
 
+	function downloadCanvasImage() {
+        console.log('helo download');
+        var a = document.createElement("a");
+        a.download = "beautified-image.png"; // 设置下载文件的默认名称
+        a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); // 将canvas转换为图片数据URL
+        a.click(); // 模拟点击下载
+    }
+
 	var canvas        =    $('canvas'),
 		drop          =    $('drop'),
+		downloadbtn   =    $('downloadBtn'),
 		defaultWidth  =    480,
 		defaultHeight =    360,
 		ctx  		  =    canvas.getContext('2d');
 
+	downloadbtn.addEventListener('click', downloadCanvasImage, false);
+	
 	drop.addEventListener('drop',function(e){
 		e.preventDefault();
 		drop.innerHTML = '';
